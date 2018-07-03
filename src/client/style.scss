@@ -1,0 +1,18 @@
+@import './assets/css/bootstrap.min.css';
+@import './assets/css/bootstrap-grid.min.css';
+
+@import './assets/css/event-dashboard.scss';
+@import './assets/css/right-panel.scss';
+@import './assets/css/app.scss';
+
+
+html, body {
+  background-color: white;
+  min-width: 700px;
+  font-family: 'Comfortaa';
+}
+
+
+.header {
+	color: red;
+}

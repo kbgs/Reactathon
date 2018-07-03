@@ -1,0 +1,11 @@
+.card {
+	border-radius: 4px;
+	background-color: #39b8de;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.card.active {
+	background-color: #098db5;
+}
