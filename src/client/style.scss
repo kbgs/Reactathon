@@ -32,6 +32,7 @@ html, body {
 
 .navbar-expand-lg {
 	margin-bottom: 10px;
+	height: 80px;
 }
 
 .card {
@@ -40,5 +41,14 @@ html, body {
 }
 
 .card-header {
-	background-color: rgba(0,0,0,0.05);
+	background-color: #007bff;
+	color : #fff;
+}
+
+.container-fluid {
+   width: 85% !important;   
+   margin-top:7px;
+}
+.bg-dark {
+    background-color: #4e858e !important;
 }
