@@ -70,6 +70,7 @@ class EventsDashboard extends Component {
 								{
 									UPCOMING_EVENTS.map((item, index) =>  {
 										return <div key={index} className="card">
+											<div className="card-header"> {item["event_name"]}</div>
 										    <div className="card-body">
 										      <h2 className="card-title">{item["event_name"]}</h2>
 										    </div>
