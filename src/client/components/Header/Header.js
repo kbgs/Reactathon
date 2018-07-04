@@ -57,9 +57,12 @@ class Header extends Component {
 								<i className="fal fa-star"></i>									
 							</a>
 							<div className={"dropdown-menu dropdown-menu-right "+classNamedropDown} aria-labelledby="dropdownPremium">
-								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Participant")}>
+								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Guest")}>
+									<span>Guest </span>
+								</a>
+								{/*<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Participant")}>
 									<span>Participant </span>
-								</a>	
+								</a>*/}	
 								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Admin")}>
 									<span>Admin</span>
 								</a>

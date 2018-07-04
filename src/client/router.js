@@ -11,7 +11,7 @@ export default (
     <Route path="/" component={App}>
     	<IndexRoute component={AppLayout} />
         <Route path="/upcomingEvents" component={EventsDashboard} />
-        <Route path="/previousEvents" component={EventsDashboard} />
+        <Route path="/pastEvents" component={EventsDashboard} />
         <Route path="/addEvent" component={AddEvent} />
         <Route path="/enrollments/:id" component={EnrolledTeams} />
     </Route>

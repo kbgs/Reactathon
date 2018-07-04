@@ -31,9 +31,8 @@ class JudgementForm extends Component {
 	render() {
 		return (
 			<div className="panel panel-default">
-				<div className="panel-title"> {"test"}</div>
 			    <div className="panel-body">
-			     	<form>
+			     	<form className='judgement-form'>
 						<div className="form-group">
 						  <label htmlFor="validationServer01">Score</label>
 						  <input type="text" name="score" className="form-control" id="validationServer01" value={this.state.score}  onChange={this.onChange} required />
@@ -47,7 +46,7 @@ class JudgementForm extends Component {
 							<label htmlFor="exampleFormControlTextarea1">Comments</label>
 							<textarea name="comments" className="form-control" id="exampleFormControlTextarea1" rows={this.state.comments} onChange={this.onChange} ></textarea>
 						</div>
-					  	<button className="btn btn-primary" onClick={this.handleJudgement}>Submit form</button>
+					  	<button className="btn btn-primary" onClick={this.handleJudgement}>Submit</button>
 					</form>
 				</div>
 			</div>

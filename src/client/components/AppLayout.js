@@ -22,7 +22,7 @@ class AppLayout extends Component {
 				</div>				
 				<div  className='col-md-6'>
 					<div className="card-columns">
-						<a href='/previousEvents'>
+						<a href='/pastEvents'>
 						  	<div className="card">
 						  		<div className="card-header">
 								    Previous Events

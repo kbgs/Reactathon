@@ -16,10 +16,11 @@ export function getEventsFailure(data) {
 	}
 }
 
-export function getEvents() {
+export function getEvents(eventType) {
 	console.log('Action triggered  : ');
+	let event = eventType.substr(1, eventType.length).toLowerCase();
 	return dispatch => {
-		return api.get('http://localhost:8080/vzevents/events')
+		return api.get('http://localhost:8080/vzevents/'+event)
 			.then(res => {
 				console.log('events res : ', res);
 				dispatch(getEventsSuccess(res.data))

@@ -46,12 +46,13 @@ class EnrolledTeams extends Component {
 	}
 
 	render() {
+		let userType = this.props.userType.length ? this.props.userType[0].data : '';
 		return (
 				<div>
 					<h4> Upcoming teams list 2018</h4>
 					<div className='row'>
 						<div className='col-md-4'>
-							<div className='teams-list'>
+							<div className='teams-list left-panel'>
 								{
 									this.state.teams.length && this.state.teams.map((item, index) =>  {
 										return <div key={index} className={this.state.activeTeam['group_name'] == item['group_name'] ? 'card active' : 'card'} onClick={(e) => this.setactiveTeam(item['group_name'], e)}>
@@ -68,8 +69,9 @@ class EnrolledTeams extends Component {
 								{this.state.teams.length && this.state.activeTeam
 									?
 									<div className="panel panel-default">
-										<div className="panel-title"> {this.state.activeTeam["group_name"]}</div>
+										<h3 className="panel-title text-center"> {this.state.activeTeam["group_name"]}</h3>
 						    			<div className="panel-body">
+						    				<p><strong>Participants List</strong></p>
 						    				<ul>
 							    			  	{
 													this.state.activeTeam && this.state.activeTeam.participants.map((item, index) =>  {
@@ -79,7 +81,7 @@ class EnrolledTeams extends Component {
 											</ul>
 									    </div>
 									    <div className="panel-footer">
-									      <button className="btn btn-primary" onClick={this.handleJudgement}>Judge Team</button>
+									      {(userType && userType == 'Judge') && <button className="btn btn-primary" onClick={this.handleJudgement}>Judge Team</button>}
 									    </div>
 									</div>
 									:
@@ -109,7 +111,8 @@ EnrolledTeams.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		teams: state.teams
+		teams: state.teams,
+		userType: state.appUser
 	}
 }
 

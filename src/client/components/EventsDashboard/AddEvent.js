@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DateTime from 'react-datetime';
+import { connect } from "react-redux"
 import {addEventData} from './action';
+import moment from 'moment';
 
 class AddEvent extends Component {
 
@@ -29,15 +31,18 @@ class AddEvent extends Component {
 		
 	}
 
-	submitForm() {
+	submitForm(e) {
+		e.preventDefault();
 		let eventData = this.state;
 		let judges= eventData["judge"].split(',');
 		let judgesList = [];
 		judges.length && judges.map((item) => {
 			judgesList.push(item);
 		});
+		eventData['start_date'] = moment(eventData['start_date']).format('MM-DD-YYYY');
+		eventData['end_date'] = moment(eventData['end_date']).format('MM-DD-YYYY');
 		eventData["judge"] = judgesList;
-		eventData["event_id"] = Math.floor(Math.randonm()*(999-100+1)+100);
+		eventData["event_id"] = Math.floor(Math.random()*(999-100+1)+100);
 		this.props.addEventData(eventData);
 	}
 
@@ -98,7 +103,7 @@ class AddEvent extends Component {
 									onChange={this.onFieldChange} value={this.state.event_description}>
 						</textarea>
 					</div>
-					<button className="btn btn-primary" type="submit" onClick={this.submitForm}>Submit</button>
+					<button className="btn btn-primary" onClick={this.submitForm}>Submit</button>
 				</form>			
 			</div>
 			
@@ -106,4 +111,16 @@ class AddEvent extends Component {
 	}
 }
 
-export default AddEvent;
+
+AddEvent.propTypes = {
+	addEventData: PropTypes.func.isRequired
+}
+
+
+function mapStateToProps(state) {
+	return {
+		
+	}
+}
+
+export default connect(mapStateToProps, {addEventData})(AddEvent);

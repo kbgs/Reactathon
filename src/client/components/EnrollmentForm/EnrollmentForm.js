@@ -38,7 +38,7 @@ class EnrollmentForm extends Component {
 
 	render() {
 		return (
-			<form>
+			<form className='enroll-form'>
 				<div className="form-group">
 				  <label htmlFor="validationServer01">Team Name</label>
 				  <input type="text" name='group_name' className="form-control" id="validationServer01" value={this.state['group_name']} required 
@@ -50,7 +50,7 @@ class EnrollmentForm extends Component {
 			    	<textarea name='participants' className="form-control" id="exampleFormControlTextarea1" rows="3"
 			    		onChange={this.onChange}>{this.state.participants}</textarea>
 			 	</div>
-			  	<button className="btn btn-primary" onClick={this.handleEnroll}>Submit form</button>
+			  	<button className="btn btn-primary" onClick={this.handleEnroll}>Submit</button>
 			</form>
 		)
 	}
