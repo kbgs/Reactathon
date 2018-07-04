@@ -91,7 +91,7 @@ class EventsDashboard extends Component {
 							    	{(this.props.location.pathname == '/upcomingEvents' && (!userType || userType == 'Guest')) && <button className="btn btn-primary" style={{marginTop: '15px'}} onClick={this.handleEnroll}>Enroll</button>}
 							      	{(userType && (userType == 'Admin')) && <a href={'/enrollments/'+this.state.activeEvent["event_id"]} className="btn btn-primary" style={{marginTop: '15px'}}>View Enrollments</a>}
 							      	{((this.props.location.pathname == '/upcomingEvents') && userType && (userType == 'Judge')) && <a href={'/enrollments/'+this.state.activeEvent["event_id"]} style={{marginTop: '15px'}} className="btn btn-primary">Judge Teams</a>}
-							      	{this.state.isEnroll
+							      	{(this.state.isEnroll && userType != 'Admin' && userType != 'Judge')
 										?
 										<EnrollmentForm eventId={this.state.activeEvent['event_id']} />
 										:

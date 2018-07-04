@@ -8,6 +8,12 @@ import * as constants from '../../constants';
 // 		data
 // 	}
 // }
+export function enrollToEventSuccess(data) {
+	return {
+		type: constants.GET_ENROLL_SUCCESS,
+		data
+	}
+}
 
 export function enrollToEventFailure(data) {
 	return {
@@ -23,6 +29,7 @@ export function enrollToEvent(enrollmentData) {
 		return api.post('http://localhost:8080/vzevents/addGroup', enrollmentData)
 			.then(res => {
 				console.log('events res : ', res);
+				dispatch(enrollToEventSuccess(res))
 			})
 			.catch(errors => dispatch(enrollToEventFailure(errors)))
 	}

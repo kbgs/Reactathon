@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import {submitJudgement} from './action';
+import {submitJudgement, submitJudgementSuccess} from './action';
 
 class JudgementForm extends Component {
 	constructor(props) {
@@ -28,11 +28,19 @@ class JudgementForm extends Component {
 			this.props.submitJudgement(judgementData);
 		}
 	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.judgementMsg != this.props.judgementMsg) {
+			let thisObj = this;
+			setTimeout(function(){ thisObj.props.submitJudgementSuccess('');  }, 3000);
+		}
+	}
 	render() {
 		return (
 			<div className="panel panel-default">
 			    <div className="panel-body">
 			     	<form className='judgement-form'>
+			     		{(this.props.judgementMsg.length && this.props.judgementMsg[0].data) ? <p style={{color: 'green'}}>{this.props.judgementMsg[0].data.data.message}</p> : null}
 						<div className="form-group">
 						  <label htmlFor="validationServer01">Score</label>
 						  <input type="text" name="score" className="form-control" id="validationServer01" value={this.state.score}  onChange={this.onChange} required />
@@ -62,8 +70,8 @@ JudgementForm.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		
+		judgementMsg: state.judgementMsg
 	}
 }
 
-export default connect(mapStateToProps, {submitJudgement})(JudgementForm);
+export default connect(mapStateToProps, {submitJudgement, submitJudgementSuccess})(JudgementForm);

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import {enrollToEvent} from './action';
+import {enrollToEvent, enrollToEventSuccess} from './action';
 
 class EnrollmentForm extends Component {
 	constructor(props) {
@@ -33,12 +33,22 @@ class EnrollmentForm extends Component {
 			enrollData.participants = participantsList;
 			enrollData['event_id'] = this.props.eventId;
 			this.props.enrollToEvent(enrollData);
+			this.setState({enrollData: {}})
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.enrollmentMsg != this.props.enrollmentMsg) {
+			let thisObj = this;
+			setTimeout(function(){ thisObj.props.enrollToEventSuccess('');  }, 3000);
 		}
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<form className='enroll-form'>
+				{(this.props.enrollmentMsg.length && this.props.enrollmentMsg[0].data) ? <p style={{color: 'green'}}>{this.props.enrollmentMsg[0].data.data.message}</p> : null}
 				<div className="form-group">
 				  <label htmlFor="validationServer01">Team Name</label>
 				  <input type="text" name='group_name' className="form-control" id="validationServer01" value={this.state['group_name']} required 
@@ -58,14 +68,15 @@ class EnrollmentForm extends Component {
 
 
 EnrollmentForm.propTypes = {
-	enrollToEvent: PropTypes.func.isRequired
+	enrollToEvent: PropTypes.func.isRequired,
+	enrollToEventSuccess: PropTypes.func.isRequired
 }
 
 
 function mapStateToProps(state) {
 	return {
-		
+		enrollmentMsg: state.enrollmentMsg
 	}
 }
 
-export default connect(mapStateToProps, {enrollToEvent})(EnrollmentForm);
+export default connect(mapStateToProps, {enrollToEvent, enrollToEventSuccess})(EnrollmentForm);

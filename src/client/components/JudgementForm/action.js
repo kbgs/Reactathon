@@ -9,13 +9,20 @@ export function submitJudgementFailure(data) {
 	}
 }
 
+export function submitJudgementSuccess(data) {
+	return {
+		type: constants.SUBMIT_JUDGEEMENT_SUCCESS,
+		data
+	}
+}
+
 export function submitJudgement(judgementData) {
 	console.log('enrollment data : ', judgementData);
 	console.log('Action triggered  : ');
 	return dispatch => {
 		return api.post('http://localhost:8080/vzevents/updateGroup', judgementData)
 			.then(res => {
-				console.log('events res : ', res);
+				dispatch(submitJudgementSuccess(res))
 			})
 			.catch(errors => dispatch(submitJudgementFailure(errors)))
 	}
