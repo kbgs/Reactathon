@@ -49,7 +49,7 @@ class EnrolledTeams extends Component {
 		let userType = this.props.userType.length ? this.props.userType[0].data : '';
 		return (
 				<div>
-					<h4> Upcoming teams list 2018</h4>
+					<h4> Enrolled teams list </h4>
 					<div className='row'>
 						<div className='col-md-4'>
 							<div className='teams-list left-panel'>

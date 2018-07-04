@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
-import {events} from './components/EventsDashboard/reducer';
+import {events, addEventMsg} from './components/EventsDashboard/reducer';
 import {teams} from './components/EnrolledTeams/reducer';
 import {appUser} from './components/Header/reducer';
 import {enrollmentMsg} from './components/EnrollmentForm/reducer';
@@ -12,5 +12,6 @@ export default combineReducers({
   teams,
   appUser,
   enrollmentMsg,
-  judgementMsg
+  judgementMsg,
+  addEventMsg
 });

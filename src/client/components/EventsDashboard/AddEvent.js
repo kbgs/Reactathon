@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DateTime from 'react-datetime';
 import { connect } from "react-redux"
-import {addEventData} from './action';
+import {addEventData, addEventSuccessData} from './action';
 import moment from 'moment';
 
 class AddEvent extends Component {
@@ -46,10 +46,18 @@ class AddEvent extends Component {
 		this.props.addEventData(eventData);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.addEventMsg != this.props.addEventMsg) {
+			let thisObj = this;
+			setTimeout(function(){ thisObj.props.addEventSuccessData('');  }, 3000);
+		}
+	}
+
 	render() {
 		return (
 			<div>
 				<form>
+					{(this.props.addEventMsg.length && this.props.addEventMsg[0].data) ? <p style={{color: 'green'}}>{this.props.addEventMsg[0].data.data.message}</p> : null}
 					<div className="form-group">
 						<label for="event_name">Event Name</label>
 						<input 	type="text" className="form-control" id="event_name" 
@@ -113,14 +121,15 @@ class AddEvent extends Component {
 
 
 AddEvent.propTypes = {
-	addEventData: PropTypes.func.isRequired
+	addEventData: PropTypes.func.isRequired,
+	addEventSuccessData: PropTypes.func.isRequired
 }
 
 
 function mapStateToProps(state) {
 	return {
-		
+		addEventMsg: state.addEventMsg
 	}
 }
 
-export default connect(mapStateToProps, {addEventData})(AddEvent);
+export default connect(mapStateToProps, {addEventData, addEventSuccessData})(AddEvent);

@@ -49,6 +49,7 @@ export function addEventData(eventData) {
 		return api.post('http://localhost:8080/vzevents/addEvent', eventData)
 			.then(res => {
 				console.log('events res : ', res);
+				dispatch(addEventSuccessData(res))
 			})
 			.catch(errors => dispatch(addEventFailureData(errors)))
 	}
