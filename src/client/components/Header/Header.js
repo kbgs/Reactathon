@@ -9,7 +9,7 @@ class Header extends Component {
 		super(props);
 		this.state = {
 			toggleUsers : false,
-			userType : null
+			userType : "Guest"
 		}
 		this.toggleMenu = this.toggleMenu.bind(this);
 		this.getTypeOfUser = this.getTypeOfUser.bind(this);
@@ -55,8 +55,8 @@ class Header extends Component {
 								<i className="fal fa-star"></i>									
 							</a>
 							<div className={"dropdown-menu dropdown-menu-right "+classNamedropDown} aria-labelledby="dropdownPremium">
-								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Guest")}>
-									<span>Guest </span>
+								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Participant")}>
+									<span>Participant </span>
 								</a>	
 								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Admin")}>
 									<span>Admin</span>
@@ -68,7 +68,7 @@ class Header extends Component {
 						</li>
 					</ul>
 			    	<form className="form-inline my-2 my-lg-0">
-			      		<label> Welcome, Guest </label>
+			      		<label> Welcome, {this.state.userType}</label>
 			    	</form>
 			  </div>	
 			</nav>			
