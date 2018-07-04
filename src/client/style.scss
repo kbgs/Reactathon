@@ -1,18 +1,60 @@
 @import './assets/css/bootstrap.min.css';
 @import './assets/css/bootstrap-grid.min.css';
-
+@import './assets/css/fontawesome.css';
 @import './assets/css/event-dashboard.scss';
 @import './assets/css/right-panel.scss';
 @import './assets/css/app.scss';
 
 
 html, body {
-  background-color: white;
-  min-width: 700px;
-  font-family: 'Comfortaa';
+  	background-color: #fff !important;
+  	min-width: 700px;
+  	font-family: 'Arial, Helvetica, sans-serif' !important;
+  	color : #333 !important;
 }
 
+.jumbotron {
+	padding : 2em 1em;
+}
 
 .header {
 	color: red;
+}
+
+.red {
+	color : #cd040b;
+}
+
+.card-columns {
+	columns : 1;
+	width: 100%;
+
+}
+
+.navbar-expand-lg {
+	margin-bottom: 10px;
+	height: 80px;
+}
+
+.card {
+	background-color: #fff;
+	color : #333;
+}
+
+.card-header {
+	background-color: #007bff;
+	color : #fff;
+}
+
+.container-fluid {
+   width: 85% !important;   
+   margin-top:7px;
+}
+.bg-dark {
+    background-color: #333 !important;
+    color : #fff !important;
+}
+
+.bg-dark .form-inline label{
+    color : #fff !important;
 }
