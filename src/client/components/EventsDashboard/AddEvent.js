@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DateTime from 'react-datetime';
+import {addEventData} from './action';
 
 class AddEvent extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			eventName : '',
-			eventType : '',
-			startDate : null,
-			endDate : null,
-			eventDescription :''
+			event_name : '',
+			event_type : '',
+			start_date : null,
+			end_date : null,
+			event_description :'',
+			technologies : null,
+			judge : []
 		}
 		this.onFieldChange = this.onFieldChange.bind(this);
 		this.submitForm = this.submitForm.bind(this);
@@ -27,7 +30,15 @@ class AddEvent extends Component {
 	}
 
 	submitForm() {
-
+		let eventData = this.state;
+		let judges= eventData["judge"].split(',');
+		let judgesList = [];
+		judges.length && judges.map((item) => {
+			judgesList.push(item);
+		});
+		eventData["judge"] = judgesList;
+		eventData["event_id"] = Math.floor(Math.randonm()*(999-100+1)+100);
+		this.props.addEventData(eventData);
 	}
 
 	render() {
@@ -35,43 +46,59 @@ class AddEvent extends Component {
 			<div>
 				<form>
 					<div className="form-group">
-						<label for="eventName">Event Name</label>
-						<input 	type="text" className="form-control is-valid" id="eventName" 
-								name="eventName" placeholder="First name" value={this.state.eventName} 
+						<label for="event_name">Event Name</label>
+						<input 	type="text" className="form-control" id="event_name" 
+								name="event_name" placeholder="Event name" value={this.state.event_name} 
 								onChange={this.onFieldChange} required />
 					</div>
 					<div class="form-group">
-					    <label for="eventType">Event Type</label>
-					    <select className="form-control" id="eventType" name="eventType" onChange={this.onFieldChange} >
-					      <option>1</option>
-					      <option>2</option>
-					      <option>3</option>
-					      <option>4</option>
-					      <option>5</option>
+					    <label for="event_type">Event Type</label>
+					    <select className="form-control" id="event_type" name="event_type" onChange={this.onFieldChange} >
+					      <option>Brown Bag</option>
+					      <option>Hackathon</option>
+					      <option>Fun</option>
 					    </select>
 					</div>
+					{
+						this.state.event_type == "Hackathon" 
+						?
+							<div className="form-group">
+								<label for="technologies">Skills</label>
+								<input 	type="text" className="form-control" id="technologies" 
+										name="technologies" value={this.state.technologies} 
+										onChange={this.onFieldChange} required />
+							</div>
+						:
+						null
+					}
 					<div className="form-group">
-					  	<label for="startDate">Start Date</label>
+					  	<label for="start_date">Start Date</label>
 					  	<DateTime 	dateFormat="MM-DD-YYYY" 
 					  				closeOnSelect ={true}
-					  				inputProps = {{name:"startDate", id:"startDate"}}
-					  				onChange={(e) => this.onFieldChange(e, "startDate")} 
-					  				value = {this.state.startDate}	/>
+					  				inputProps = {{name:"start_date", id:"start_date"}}
+					  				onChange={(e) => this.onFieldChange(e, "start_date")} 
+					  				value = {this.state.start_date}	/>
 					</div>
 					<div className="form-group">
-					  	<label for="endDate">End Date</label>
+					  	<label for="end_date">End Date</label>
 					  	<DateTime 	dateFormat="MM-DD-YYYY"  closeOnSelect ={true}
-					  				inputProps = {{name:"endDate", id:"endDate"}}
-					  				onChange={(e) => this.onFieldChange(e, "endDate")} 
-					  				value = {this.state.endDate}	/>
+					  				inputProps = {{name:"end_date", id:"end_date"}}
+					  				onChange={(e) => this.onFieldChange(e, "end_date")} 
+					  				value = {this.state.end_date}	/>
 					</div>
 					<div className="form-group">
-						<label for="eventDescription">Event Description</label>
-						<textarea 	className="form-control" id="eventDescription" name="eventDescription" rows="3" 
-									onChange={this.onFieldChange} value={this.state.eventDescription}>
+						<label for="judge">Judges</label>
+						<textarea 	className="form-control" id="judge" name="judge" rows="3" 
+									onChange={this.onFieldChange}  placeholder="Enter Judge Emails separated by comma" value={this.state.judge}>
 						</textarea>
 					</div>
-					<button className="btn btn-primary" type="submit" onClick={this.submitForm}>Submit form</button>
+					<div className="form-group">
+						<label for="event_description">Event Description</label>
+						<textarea 	className="form-control" id="event_description" name="event_description" rows="3" 
+									onChange={this.onFieldChange} value={this.state.event_description}>
+						</textarea>
+					</div>
+					<button className="btn btn-primary" type="submit" onClick={this.submitForm}>Submit</button>
 				</form>			
 			</div>
 			

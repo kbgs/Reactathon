@@ -1,6 +1,7 @@
 @import './assets/css/bootstrap.min.css';
 @import './assets/css/bootstrap-grid.min.css';
 @import './assets/css/fontawesome.css';
+@import './assets/css/react-datetime.css';
 @import './assets/css/event-dashboard.scss';
 @import './assets/css/right-panel.scss';
 @import './assets/css/app.scss';
@@ -57,4 +58,9 @@ html, body {
 
 .bg-dark .form-inline label{
     color : #fff !important;
+}
+
+.events-list {
+	border: 1px solid #ccc;
+    padding: 10px;
 }

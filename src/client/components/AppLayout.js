@@ -22,10 +22,10 @@ class AppLayout extends Component {
 				</div>				
 				<div  className='col-md-6'>
 					<div className="card-columns">
-						<a href='/historicEvents'>
+						<a href='/previousEvents'>
 						  	<div className="card">
 						  		<div className="card-header">
-								    Historic Events
+								    Previous Events
 								</div>
 							    <div className="card-body">
 							      	<p className="card-text">Dashboard for all the Past Events happened in Organisation..</p>

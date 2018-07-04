@@ -58,7 +58,7 @@ class EventsDashboard extends Component {
 					<h4> Upcoming Events list 2018</h4>
 					<div className='row'>
 						<div className='col-md-4'>
-							<div className='events-list'>
+							<div className="events-list-left-panel">
 								{
 									this.state.events.length && this.state.events.map((item, index) =>  {
 										return <div key={index} className={this.state.activeEvent['event_id'] == item['event_id'] ? 'card active' : 'card'} onClick={(e) => this.setActiveEvent(item['event_id'], e)}>
@@ -71,32 +71,32 @@ class EventsDashboard extends Component {
 							</div>
 						</div>
 						<div className='col-md-8'>	
-							<div className="right-panel">
-								<div className="panel panel-default">
-									<div className="panel-title"> {this.state.activeEvent["event_name"]}</div>
-					    			<div className="panel-body">
-								      <p> Start Date : {this.state.activeEvent["start_date"]} - End Date : {this.state.activeEvent["end_date"]}</p>
-								      <p>{this.state.activeEvent["event_description"]}</p>
-								    </div>
-								    <div className="panel-footer">
-								      <button className="btn btn-primary" onClick={this.handleEnroll}>Enroll</button>
-								      <a href={'/enrollments/'+this.state.activeEvent["event_id"]} className="btn btn-primary">Judge Teams</a>
-								    </div>
-								</div>
-								{this.state.isEnroll
-									?
-									<EnrollmentForm eventId={this.state.activeEvent['event_id']} />
-									:
-									null
-								}
+							<div className="panel panel-default right-panel">
+								<div className="panel-title"> {this.state.activeEvent["event_name"]}</div>
+				    			<div className="panel-body">
+							      <p> Start Date : {this.state.activeEvent["start_date"]} - End Date : {this.state.activeEvent["end_date"]}</p>
+							      <p>{this.state.activeEvent["event_description"]}</p>
+							    </div>
+							    <div className="panel-footer">
+							      	<button className="btn btn-primary" onClick={this.handleEnroll}>Enroll</button>
+							      	<a href={'/enrollments/'+this.state.activeEvent["event_id"]} className="btn btn-primary">Judge Teams</a>
+							      	{this.state.isEnroll
+										?
+										<EnrollmentForm eventId={this.state.activeEvent['event_id']} />
+										:
+										null
+									}
 
-								{this.state.isJudgement
-									?
-									<JudgementForm />
-									:
-									null
-								}
+									{this.state.isJudgement
+										?
+										<JudgementForm />
+										:
+										null
+									}
+
+							    </div>
 							</div>
+							
 						</div>
 					</div>	
 				</div>	  
