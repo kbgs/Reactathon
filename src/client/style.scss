@@ -1,5 +1,6 @@
 @import './assets/css/bootstrap.min.css';
 @import './assets/css/bootstrap-grid.min.css';
+@import './assets/css/fontawesome.css';
 @import './assets/css/event-dashboard.scss';
 @import './assets/css/right-panel.scss';
 @import './assets/css/app.scss';
@@ -50,5 +51,10 @@ html, body {
    margin-top:7px;
 }
 .bg-dark {
-    background-color: #4e858e !important;
+    background-color: #333 !important;
+    color : #fff !important;
+}
+
+.bg-dark .form-inline label{
+    color : #fff !important;
 }

@@ -6,7 +6,7 @@ class AppLayout extends Component {
 	render() {
 		return (
 			<div  className='row'>
-				<div  className='col-md-12'>
+				<div  className='col-md-6'>
 					<div className="card-columns">
 					  	<a href='/upcomingEvents'>
 						  <div className="card">
@@ -17,17 +17,23 @@ class AppLayout extends Component {
 						      	<p className="card-text"> Dashboard for all the Upcoming Events happens in Organisation.</p>
 						    </div>
 						  </div>
-						</a>
-				  		<div className="card">
-					  		<div className="card-header">
-							    Historic Events
-							</div>
-						    <div className="card-body">
-						      	<p className="card-text">Dashboard for all the Past Events happened in Organisation..</p>
-						    </div>
-						</div>
+						</a>				  		
 					</div>	
 				</div>				
+				<div  className='col-md-6'>
+					<div className="card-columns">
+						<a href='/historicEvents'>
+						  	<div className="card">
+						  		<div className="card-header">
+								    Historic Events
+								</div>
+							    <div className="card-body">
+							      	<p className="card-text">Dashboard for all the Past Events happened in Organisation..</p>
+							    </div>
+							</div>
+						</a>
+					</div>	
+				</div>
 			</div>
 			
 		)

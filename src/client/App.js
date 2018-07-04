@@ -7,9 +7,15 @@ class App extends Component {
 		return (
 			<div  className='container-fluid'>
 				<Header />
+				<div className="jumbotron">
+					<div className="container">
+						<h1 className="display-3">Vz Events Portal</h1>
+						<h4> All the events information like Hackathons, Brown bags, Gusto etc of the Organisation are availabe here .</h4>
+						<p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+					</div>
+				</div>				
 				{this.props.children}			
-			</div>
-			
+			</div>			
 		)
 	}
 }
