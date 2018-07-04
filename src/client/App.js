@@ -30,6 +30,9 @@ class App extends Component {
 								<div class="card">
 									<img class="card-img-top" src={require("./assets/images/sports1.jpg")} alt="Card image cap"/>									
 								</div>
+								<div class="card">
+									<img class="card-img-top" src={require("./assets/images/cultural.jpg")} alt="Card image cap"/>									
+								</div>
 							</div>
 						</div>	
 					:
