@@ -27,3 +27,28 @@ export function getEvents() {
 			.catch(errors => dispatch(getEventsFailure(errors)))
 	}
 }
+
+
+export function addEventSuccessData(data) {
+	return {
+		type: constants.ADD_EVENTS_SUCCESS,
+		data
+	}
+}
+
+export function addEventFailureData(data) {
+	return {
+		type: constants.ADD_EVENTS_FAILURE,
+		data
+	}
+}
+
+export function addEventData(eventData) {
+	return dispatch => {
+		return api.post('http://localhost:8080/vzevents/addEvent', eventData)
+			.then(res => {
+				console.log('events res : ', res);
+			})
+			.catch(errors => dispatch(addEventFailureData(errors)))
+	}
+}

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
 import styles from 'style.scss';
+import { connect } from 'react-redux';
+import { setAppUser } from './action';
 
 class Header extends Component {
 
@@ -20,6 +21,7 @@ class Header extends Component {
 	}
 
 	getTypeOfUser (e, user) {
+		this.props.setAppUser(user);
 		this.setState({userType:user});
 		this.toggleMenu();
 	}
@@ -76,4 +78,17 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+
+
+Header.propTypes = {
+	setAppUser: PropTypes.func.isRequired
+}
+
+
+function mapStateToProps(state) {
+	return {
+		
+	}
+}
+
+export default connect(mapStateToProps, {setAppUser})(Header);
