@@ -38,52 +38,52 @@ const GROUPS_INFO = [{
 
 
 class JudgementForm extends Component {
+	constructor(props) {
+		super(props);
+		this.onChange = this.onChange.bind(this);
+		this.handleJudgement = this.handleJudgement.bind(this);
+		this.state = {
+			judgementData: {}
+		}
+	}
+
+	onChange(e) {
+		let judgementData = this.state.judgementData;
+		judgementData[e.target.name] = e.target.value;
+		this.setState({judgementData: judgementData});
+	}
+
+	handleJudgement(e) {
+		e.preventDefault();
+		let judgementData = this.state.judgementData;
+		if(Object.keys(this.state.judgementData).length) {
+			judgementData['event_id'] = this.props.eventId;
+			this.props.enrollToEvent(judgementData);
+		}
+	}
 	render() {
 		return (
-			<div>
-				<h4> Upcoming Events list 2018</h4>
-				<div className="card-group">
-					{
-						GROUPS_INFO.map((item, index) =>  {
-							return <div className="card">
-							    <div className="card-body">
-							      <h2 className="card-title">{item["group_name"]}</h2>
-							    </div>
-							</div>
-						})
-					}
-				</div>	
-				<div className="card-preview">					
-					<div className="panel panel-default">
-						<div className="panel-title"> {item["group_name"]}</div>
-					    <div className="panel-body">
-					     	<form>
-								<div className="form-group">
-								  <label for="validationServer01">Score</label>
-								  <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required />
-								  <div className="valid-feedback">
-									Looks good!
-								  </div>
-								</div>
-								<div className="form-group">
-								  <label for="validationServer02">End Result</label>
-								  <input type="text" className="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required />
-								  <div className="valid-feedback">
-									Looks good!
-								  </div>
-								</div>
-								<div className="form-group">
-									<label for="exampleFormControlTextarea1">Feedback</label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-								</div>
-							  	<button className="btn btn-primary" type="submit">Submit form</button>
-							</form>
+			<div className="panel panel-default">
+				<div className="panel-title"> {"test"}</div>
+			    <div className="panel-body">
+			     	<form>
+						<div className="form-group">
+						  <label htmlFor="validationServer01">Score</label>
+						  <input type="text" name="score" className="form-control" id="validationServer01" value={this.state.score} required />
 						</div>
-					</div>
-				</div>		
+						<div className="form-group">
+						  <label htmlFor="validationServer02">End Result</label>
+						  <input type="text" name="end_result" className="form-control" id="validationServer02" placeholder="Winner/First Runnerup" value={this.state.end_result} required />
+						  
+						</div>
+						<div className="form-group">
+							<label htmlFor="exampleFormControlTextarea1">Comments</label>
+							<textarea name="comments" className="form-control" id="exampleFormControlTextarea1" rows={this.state.comments}></textarea>
+						</div>
+					  	<button className="btn btn-primary" type="submit">Submit form</button>
+					</form>
+				</div>
 			</div>
-
-			
 		)
 	}
 }
