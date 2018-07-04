@@ -8,15 +8,21 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			toggleUsers : false	
+			toggleUsers : false,
+			userType : null
 		}
 		this.toggleMenu = this.toggleMenu.bind(this);
+		this.getTypeOfUser = this.getTypeOfUser.bind(this);
 	}
 
 	toggleMenu ()  {
 		this.setState({toggleUsers : !this.state.toggleUsers});
 	}
 
+	getTypeOfUser (e, user) {
+		this.setState({userType:user});
+		this.toggleMenu();
+	}
 
 	render() {
 		let classNamedropDown = this.state.toggleUsers == true?"show":"hide";
@@ -32,6 +38,16 @@ class Header extends Component {
 				      	<li className="nav-item active">
 				        	<a className="nav-link" href="/"> <span className="sr-only">(current)</span></a>
 				      	</li>
+				      	{
+				      		this.state.userType == "Admin" 
+				      		?
+				      		<li className="nav-item">
+					        	<a className="nav-link" href="/addEvent"> <b>Host Event</b></a>
+					      	</li>
+					      	:
+					      	null
+				      	}
+				      	
 				    </ul>
 				    <ul className="navbar-nav">
 				    	<li className="nav-item dropdown show">
@@ -39,13 +55,13 @@ class Header extends Component {
 								<i className="fal fa-star"></i>									
 							</a>
 							<div className={"dropdown-menu dropdown-menu-right "+classNamedropDown} aria-labelledby="dropdownPremium">
-								<a className="dropdown-item" href="">
+								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Guest")}>
 									<span>Guest </span>
 								</a>	
-								<a className="dropdown-item" href="">
+								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Admin")}>
 									<span>Admin</span>
 								</a>
-								<a className="dropdown-item" href="">
+								<a className="dropdown-item" onClick={(e)=> this.getTypeOfUser(e, "Judge")}>
 									<span>Judge</span>
 								</a>
 							</div>
