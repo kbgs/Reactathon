@@ -1,6 +1,7 @@
 const {resolve, join} = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
@@ -32,8 +33,8 @@ module.exports = {
           use: ExtractTextPlugin.extract([ 'css-loader', 'sass-loader' ])
        },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader'
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg)$/,
+        loader: 'url-loader?limit=10000'
       }
     ]
   },
@@ -41,6 +42,7 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'style.css'
     }),
+    new CopyWebpackPlugin([{from: "./src/client/assets/images", to: "images/"}]),
     new webpack.EnvironmentPlugin(['NODE_ENV'])
   ],
   resolve: {

@@ -37,7 +37,7 @@ class AddEvent extends Component {
 			judgesList.push(item);
 		});
 		eventData["judge"] = judgesList;
-		eventData["event_id"] = Math.floor(Math.randonm()*(999-100+1)+100);
+		eventData["event_id"] = Math.floor(Math.randon()*(999-100+1)+100);
 		this.props.addEventData(eventData);
 	}
 

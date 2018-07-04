@@ -7,7 +7,7 @@
 @import './assets/css/app.scss';
 
 
-html, body {
+html, head, body {
   	background-color: #fff !important;
   	min-width: 700px;
   	font-family: 'Arial, Helvetica, sans-serif' !important;
@@ -45,6 +45,7 @@ html, body {
 .card-header {
 	background-color: #007bff;
 	color : #fff;
+	text-align : center;
 }
 
 .container-fluid {
@@ -63,4 +64,8 @@ html, body {
 .events-list {
 	border: 1px solid #ccc;
     padding: 10px;
+}
+
+.header-container {
+	padding-bottom : 10px;
 }
