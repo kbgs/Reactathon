@@ -76,7 +76,7 @@ class EventsDashboard extends Component {
 				return;
 			}
 		})
-		this.setState({activeEvent: activeEvent});
+		this.setState({activeEvent: activeEvent, isEnroll: false, isJudgement: false});
 	}
 
 	handleEnroll() {
