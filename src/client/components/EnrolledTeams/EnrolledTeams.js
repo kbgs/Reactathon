@@ -10,7 +10,9 @@ class EnrolledTeams extends Component {
 	constructor(props) {
 		super(props);
 		this.setactiveTeam = this.setactiveTeam.bind(this);
+		this.handleJudgement = this.handleJudgement.bind(this);
 		this.state = {
+			isJudgement: false,
 			teams: [],
 			activeTeam: {}
 		};
@@ -18,7 +20,7 @@ class EnrolledTeams extends Component {
 
 	componentDidMount() {
 		console.log("didmount props ", this.props);
-		this.props.getTeams();
+		this.props.getTeams(this.props.params.id);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -28,15 +30,19 @@ class EnrolledTeams extends Component {
 		}
 	}
 
-	setactiveTeam(eventId) {
+	setactiveTeam(groupName) {
 		let activeTeam = {};
-		this.state.teams.map((event) => {
-			if(event['event_id'] == eventId) {
-				activeTeam = event;
+		this.state.teams.map((team) => {
+			if(team['group_name'] == groupName) {
+				activeTeam = team;
 				return;
 			}
 		})
-		this.setState({activeTeam: activeTeam});
+		this.setState({activeTeam: activeTeam, isJudgement: false});
+	}
+
+	handleJudgement() {
+		this.setState({ isJudgement: true });
 	}
 
 	render() {
@@ -59,20 +65,30 @@ class EnrolledTeams extends Component {
 						</div>
 						<div className='col-md-8'>	
 							<div className="right-panel">
-								<div className="panel panel-default">
-									<div className="panel-title"> {this.state.activeTeam["group_name"]}</div>
-					    			<div className="panel-body">
-								      <p> Start Date : {this.state.activeTeam["start_date"]} - End Date : {this.state.activeTeam["end_date"]}</p>
-								      <p>{this.state.activeTeam["event_description"]}</p>
-								    </div>
-								    <div className="panel-footer">
-								      <button className="btn btn-primary" onClick={this.handleJudgement}>Judge Teams</button>
-								    </div>
-								</div>
+								{this.state.teams.length && this.state.activeTeam
+									?
+									<div className="panel panel-default">
+										<div className="panel-title"> {this.state.activeTeam["group_name"]}</div>
+						    			<div className="panel-body">
+						    				<ul>
+							    			  	{
+													this.state.activeTeam && this.state.activeTeam.participants.map((item, index) =>  {
+														return <li key={index}>{item}</li>
+													})
+												}
+											</ul>
+									    </div>
+									    <div className="panel-footer">
+									      <button className="btn btn-primary" onClick={this.handleJudgement}>Judge Team</button>
+									    </div>
+									</div>
+									:
+									null
+								}
 								
 								{this.state.isJudgement
 									?
-									<JudgementForm />
+									<JudgementForm groupName={this.props.params.id} />
 									:
 									null
 								}
@@ -86,6 +102,7 @@ class EnrolledTeams extends Component {
 }
 
 EnrolledTeams.propTypes = {
+	getTeams: PropTypes.func.isRequired,
 	teams: PropTypes.array.isRequired
 }
 
@@ -96,4 +113,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, {getteams})(EnrolledTeams);
+export default connect(mapStateToProps, {getTeams})(EnrolledTeams);

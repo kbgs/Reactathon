@@ -13,7 +13,7 @@ export function submitJudgement(judgementData) {
 	console.log('enrollment data : ', judgementData);
 	console.log('Action triggered  : ');
 	return dispatch => {
-		return api.post('http://localhost:8080/vzevents/addGroup', judgementData)
+		return api.post('http://localhost:8080/vzevents/updateGroup', judgementData)
 			.then(res => {
 				console.log('events res : ', res);
 			})
