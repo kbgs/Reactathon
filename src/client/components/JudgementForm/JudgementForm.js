@@ -1,41 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const GROUPS_INFO = [{
-	"event_id" : 100,
-	"group_name" : "Reactathon",
-	"start_date" : "07/02/2018",
-	"end_date" : "07/04/2018",
-	"event_description" : "Reactathon for VDSI",
-	"technologies" : "React JS, NODE JS",
-	"participants" : ["statement_1", "statement_2"],
-	"attachments" : ["att1.jpg", "att2.jpg"],
-	"event_type" : "hackathon",
-	"event_link" : ""
-},{
-	"event_id" : 101,
-	"event_name" : "Brown Bag Session on Blockchain technology",
-	"start_date" : "08/02/2018",
-	"end_date" : "08/02/2018",
-	"event_description" : "A session on block chain technology",
-	"technologies" : "Blockchain",
-	"problem_statements" : "",
-	"attachments" : "",
-	"event_type" : "brownbag",
-	"event_link" : "https://webex.com"
-},{
-	"event_id" : 102,
-	"event_name" : "GUSTO Events",
-	"start_date" : "10/01/2018",
-	"end_date" : "11/18/2018",
-	"event_description" : "A Year end sports events conducted & awarded the employees and also final day celebrations",
-	"technologies" : "",
-	"problem_statements" : "",
-	"attachments" : "",
-	"event_type" : "gusto",
-	"event_link" : "https://gusto.verizon.com"
-}]
-
+import {submitJudgement} from './action';
 
 class JudgementForm extends Component {
 	constructor(props) {
@@ -57,8 +24,8 @@ class JudgementForm extends Component {
 		e.preventDefault();
 		let judgementData = this.state.judgementData;
 		if(Object.keys(this.state.judgementData).length) {
-			judgementData['event_id'] = this.props.eventId;
-			this.props.enrollToEvent(judgementData);
+			judgementData['group_name'] = this.props.groupName;
+			this.props.submitJudgement(judgementData);
 		}
 	}
 	render() {
@@ -69,18 +36,18 @@ class JudgementForm extends Component {
 			     	<form>
 						<div className="form-group">
 						  <label htmlFor="validationServer01">Score</label>
-						  <input type="text" name="score" className="form-control" id="validationServer01" value={this.state.score} required />
+						  <input type="text" name="score" className="form-control" id="validationServer01" value={this.state.score}  onChange={this.onChange} required />
 						</div>
 						<div className="form-group">
 						  <label htmlFor="validationServer02">End Result</label>
-						  <input type="text" name="end_result" className="form-control" id="validationServer02" placeholder="Winner/First Runnerup" value={this.state.end_result} required />
+						  <input type="text" name="end_result" className="form-control" id="validationServer02" placeholder="Winner/First Runnerup"  onChange={this.onChange} value={this.state.end_result} required />
 						  
 						</div>
 						<div className="form-group">
 							<label htmlFor="exampleFormControlTextarea1">Comments</label>
-							<textarea name="comments" className="form-control" id="exampleFormControlTextarea1" rows={this.state.comments}></textarea>
+							<textarea name="comments" className="form-control" id="exampleFormControlTextarea1" rows={this.state.comments} onChange={this.onChange} ></textarea>
 						</div>
-					  	<button className="btn btn-primary" type="submit">Submit form</button>
+					  	<button className="btn btn-primary" onClick={this.handleJudgement}>Submit form</button>
 					</form>
 				</div>
 			</div>
@@ -88,4 +55,16 @@ class JudgementForm extends Component {
 	}
 }
 
-export default JudgementForm;
+
+JudgementForm.propTypes = {
+	submitJudgement: PropTypes.func.isRequired
+}
+
+
+function mapStateToProps(state) {
+	return {
+		
+	}
+}
+
+export default connect(mapStateToProps, {submitJudgement})(JudgementForm);

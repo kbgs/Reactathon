@@ -7,41 +7,6 @@ import JudgementForm from '../JudgementForm/JudgementForm';
 
 import { getEvents } from './action';
 
-const UPCOMING_EVENTS = [{
-	"event_id" : 100,
-	"event_name" : "Reactathon",
-	"start_date" : "07/02/2018",
-	"end_date" : "07/04/2018",
-	"event_description" : "Reactathon for VDSI",
-	"technologies" : "React JS, NODE JS",
-	"problem_statements" : ["statement_1", "statement_2"],
-	"attachments" : ["att1.jpg", "att2.jpg"],
-	"event_type" : "hackathon",
-	"event_link" : ""
-},{
-	"event_id" : 101,
-	"event_name" : "Brown Bag Session on Blockchain technology",
-	"start_date" : "08/02/2018",
-	"end_date" : "08/02/2018",
-	"event_description" : "A session on block chain technology",
-	"technologies" : "Blockchain",
-	"problem_statements" : "",
-	"attachments" : "",
-	"event_type" : "brownbag",
-	"event_link" : "https://webex.com"
-},{
-	"event_id" : 102,
-	"event_name" : "GUSTO Events",
-	"start_date" : "10/01/2018",
-	"end_date" : "11/18/2018",
-	"event_description" : "A Year end sports events conducted & awarded the employees and also final day celebrations",
-	"technologies" : "",
-	"problem_statements" : "",
-	"attachments" : "",
-	"event_type" : "gusto",
-	"event_link" : "https://gusto.verizon.com"
-}]
-
 class EventsDashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -115,7 +80,7 @@ class EventsDashboard extends Component {
 								    </div>
 								    <div className="panel-footer">
 								      <button className="btn btn-primary" onClick={this.handleEnroll}>Enroll</button>
-								      <button className="btn btn-primary" onClick={this.handleJudgement}>Judge Teams</button>
+								      <a href={'/enrollments/'+this.state.activeEvent["event_id"]} className="btn btn-primary">Judge Teams</a>
 								    </div>
 								</div>
 								{this.state.isEnroll
